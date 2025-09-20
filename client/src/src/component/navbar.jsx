@@ -73,14 +73,18 @@ const Navbar = () => {
                     >
                         Contact
                     </Link>
-                    <button className="cursor-pointer px-4 py-1 rounded-xl bg-transparent text-red-600 border border-red-600 font-medium 
+                    <Link to="/signup" className="cursor-pointer px-4 py-1 rounded-xl bg-transparent text-red-600 border border-red-600 font-medium 
                    hover:border-black   hover:text-black hover:shadow-soft transition">
                         Register
-                    </button>
+                    </Link>
 
-
+                    <Link
+                        to="/login"
+                        className="px-4 py-1  font-medium  transition cursor-pointer rounded-lg front-semibold  duration-300 focus:outline-none bg-red-500 text-white hover:bg-red-600 shadow-md hover:shadow-lg"
+                    >
+                        Login
+                    </Link>
                     {/* <CButton label="Sign Up" onClick={() => alert("Ordered!")} /> */}
-                    <CButton label="Login" onClick={() => alert("Ordered!")} />
 
                 </div>
             </div>

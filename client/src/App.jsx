@@ -3,6 +3,8 @@ import './App.css'
 import HomePage from './src/pages/home/homepage'
 import AppLayout from './src/layouts/AppLayout'
 import FoodPage from './src/pages/store/foodpage'
+import LoginPage from './src/pages/auth/login'
+import RegisterPage from './src/pages/auth/register'
 
 const Router = createBrowserRouter([
   {
@@ -16,6 +18,14 @@ const Router = createBrowserRouter([
       {
         path: "/explore",
         element: <FoodPage />,
+      },
+      {
+        path: "/login",
+        element: <LoginPage />,
+      },
+      {
+        path: "/signup",
+        element: <RegisterPage />,
       },
 
     ]
