@@ -1,6 +1,6 @@
-import userModel from "../models/user.model.js"
+import userModel from "../../models/user.model.js"
 import bcryptjs from 'bcryptjs'
-import { generateToken } from "../services/jwt.js";
+import { generateToken } from "../../services/jwt.js";
 export const UserAuthRegistrtion = async (req, res) => {
     try {
         const { name, email, password } = req.body;

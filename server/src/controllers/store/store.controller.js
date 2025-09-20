@@ -1,4 +1,4 @@
-import Restaurant from "../models/restaurant.model.js";
+import Restaurant from "../../models/restaurant.model.js";
 import Reel from "../models/reel.model.js";
 
 export const addRestaurant = async (req, res) => {
@@ -140,3 +140,12 @@ export const getReelsForRestaurant = async (req, res) => {
         res.status(500).json({ error: "Internal server error" });
     }
 };
+
+
+export async function getAllProduct(req, res) {
+    try {
+        const rest
+    } catch (error) {
+
+    }
+}

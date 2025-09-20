@@ -1,41 +1,127 @@
-import React from 'react'
+import React from "react";
+// import { foo } from 'lucide-react'
+import logo from '../../assets/img/logo.png'
+
+import { } from 'radix-ui'
+import CButton from "./buttone";
+const navLink = {
+    home: {
+        path: '/',
+        name: "Home"
+    },
+    explore: {
+        path: '/explore',
+        name: "Explore"
+    },
+    reels: {
+        path: '/reels',
+        name: "Reels"
+    },
+    restaurants: {
+        path: '/restaurants',
+        name: "Restaurants"
+    },
+    cart: {
+        path: '/cart',
+        name: "Cart"
+    },
+    orders: {
+        path: '/orders',
+        name: "Orders"
+    },
+    track: {
+        path: '/track',
+        name: "Track Order"
+    },
+    profile: {
+        path: '/profile',
+        name: "Profile"
+    },
+    login: {
+        path: '/login',
+        name: "Login"
+    },
+    register: {
+        path: '/register',
+        name: "Register"
+    },
+    admin: {
+        path: '/admin',
+        name: "Admin Dashboard"
+    },
+    rider: {
+        path: '/rider',
+        name: "Rider Panel"
+    },
+    support: {
+        path: '/support',
+        name: "Help & Support"
+    }
+};
 
 const Navbar = () => {
     return (
-        <nav class="bg-white border-gray-200 dark:bg-gray-900">
-            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
-                    <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
-                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+        <nav className="bg-white shadow-md">
+            <div className="max-w-screen-xl mx-auto px-4 py-3 flex items-center justify-between">
+                {/* Logo */}
+                <a href="/" className="flex items-center space-x-2">
+                    <img
+                        src={logo}
+                        alt="Logo"
+                        className="w-[110px]"
+                    />
+
+                    {/* <span className="text-2xl font-bold colors-primary">Foodie</span> */}
                 </a>
-                <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get started</button>
-                    <button data-collapse-toggle="navbar-cta" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-cta" aria-expanded="false">
-                        <span class="sr-only">Open main menu</span>
-                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
-                        </svg>
-                    </button>
+
+                {/* Search bar */}
+                <div className="hidden md:flex flex-1 mx-6">
+                    <input
+                        type="text"
+                        placeholder="Search for restaurants, dishes, cuisines..."
+                        className="w-full rounded-lg px-4 py-2 text-sm border border-gray-200 focus:outline-none focus:ring-2 focus:ring-accent"
+                    />
                 </div>
-                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
-                    <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                        <li>
-                            <a href="#" class="block py-2 px-3 md:p-0 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:dark:text-blue-500" aria-current="page">Home</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
-                        </li>
-                    </ul>
+
+                {/* Menu + Auth */}
+                <div className="flex items-center space-x-6">
+                    <a
+                        href="#"
+                        className="colors-primary hover:text-red-600 font-medium transition"
+                    >
+                        Home
+                    </a>
+                    <a
+                        href="#"
+                        className="colors-primary hover:text-red-600 font-medium transition"
+                    >
+                        About
+                    </a>
+                    <a
+                        href="#"
+                        className="colors-primary hover:text-red-600 font-medium transition"
+                    >
+                        Services
+                    </a>
+                    <a
+                        href="#"
+                        className="colors-primary hover:text-red-600 font-medium transition"
+                    >
+                        Contact
+                    </a>
+                    <button className="cursor-pointer px-4 py-1 rounded-xl bg-transparent text-red-600 border border-red-600 font-medium 
+                   hover:border-black   hover:text-black hover:shadow-soft transition">
+                        Register
+                    </button>
+
+
+                    {/* <CButton label="Sign Up" onClick={() => alert("Ordered!")} /> */}
+                    <CButton label="Login" onClick={() => alert("Ordered!")} />
+
                 </div>
             </div>
         </nav>
-    )
-}
+    );
+};
 
-export default Navbar
+export default Navbar;

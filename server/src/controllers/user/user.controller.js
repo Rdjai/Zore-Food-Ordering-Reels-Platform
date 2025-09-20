@@ -1,5 +1,5 @@
-import userModel from "../models/user.model.js"
-import restaurantModel from "../models/restaurant.model.js";
+import userModel from "../../models/user.model.js"
+import restaurantModel from "../../models/restaurant.model.js";
 import { json } from "express";
 export const UserProfile = async (req, res) => {
     try {

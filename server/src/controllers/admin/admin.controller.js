@@ -1,6 +1,6 @@
-import userModel from "../models/user.model.js";
-import reelsModel from "../models/reels.model.js";
-import restaurantModel from "../models/restaurant.model.js";
+import userModel from "../../models/user.model.js";
+import reelsModel from "../../models/reels.model.js";
+import restaurantModel from "../../models/restaurant.model.js";
 
 export const deleteUserByAdmin = async (req, res) => {
     try {
