@@ -1,10 +1,8 @@
 import React from 'react'
 import { AnimatedShinyText } from '@/components/ui/animated-shiny-text'
-import { Star } from 'lucide-react'
+import { Link } from 'react-router-dom';
+
 const HeroSection = () => {
-
-
-
     return (
         <div className="relative flex flex-col justify-center items-center h-screen w-full bg-amber-200 text-center overflow-hidden">
             <div className="inline-flex items-center gap-2 bg-red-100 text-red-700 px-4 py-2 rounded-full text-lg font-medium mb-6 animate-pulse">
@@ -24,9 +22,10 @@ const HeroSection = () => {
 
 
             <div className="flex gap-4">
-                <button className="bg-red-500 hover:bg-red-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition duration-300">
+
+                <Link to="/explore" className="bg-red-500 hover:bg-red-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition duration-300">
                     Order Now
-                </button>
+                </Link>
                 <button className="bg-white hover:bg-gray-100 text-red-500 font-semibold px-6 py-3 rounded-lg shadow-lg transition duration-300">
                     Explore Reels
                 </button>
