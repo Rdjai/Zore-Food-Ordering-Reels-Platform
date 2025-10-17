@@ -1,5 +1,5 @@
 import React from 'react'
-import { AnimatedShinyText } from '@/components/ui/animated-shiny-text'
+import { AnimatedShinyText } from '../../components/ui/animated-shiny-text'
 import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
@@ -26,9 +26,9 @@ const HeroSection = () => {
                 <Link to="/explore" className="bg-red-500 hover:bg-red-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition duration-300">
                     Order Now
                 </Link>
-                <button className="bg-white hover:bg-gray-100 text-red-500 font-semibold px-6 py-3 rounded-lg shadow-lg transition duration-300">
+                <Link to="/reel" className="bg-white hover:bg-gray-100 text-red-500 font-semibold px-6 py-3 rounded-lg shadow-lg transition duration-300">
                     Explore Reels
-                </button>
+                </Link>
             </div>
 
 

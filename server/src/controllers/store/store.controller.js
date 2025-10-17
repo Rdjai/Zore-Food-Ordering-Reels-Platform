@@ -144,7 +144,7 @@ export const getReelsForRestaurant = async (req, res) => {
 
 export async function getAllProduct(req, res) {
     try {
-        const rest
+        // const restx
     } catch (error) {
 
     }

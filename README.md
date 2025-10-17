@@ -104,11 +104,11 @@ Riders, Admins, and AI-powered features are integrated to give a complete real-w
 ### **4️⃣ Products**
 | Endpoint | Description |  
 |----------|-------------|  
-| POST `/api/products` | Add product |  
-| GET `/api/products` | List products |  
-| GET `/api/products/:id` | Product details |  
-| PUT `/api/products/:id` | Update product |  
-| DELETE `/api/products/:id` | Delete product |  
+| POST `/api/products` | Add product ✅|  
+| GET `/api/products` | List products✅ |  
+| GET `/api/products/:id` | Product details ✅|  
+| PUT `/api/products/:id` | Update product ✅|  
+| DELETE `/api/products/:id` | Delete product✅ |  
 | POST `/api/products/:id/add-ons` | Add toppings |  
 | GET `/api/products/:id/add-ons` | Get toppings |  
 | DELETE `/api/products/:id/add-ons/:addonId` | Delete topping |  

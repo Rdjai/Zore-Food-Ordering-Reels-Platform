@@ -1,4 +1,4 @@
-import { deleteUserByAdmin, banUser, getAllReels, getAllRestaurants, getAllUsers, removeReel } from "../controllers/admin.controller.js"
+import { deleteUserByAdmin, banUser, getAllReels, getAllRestaurants, getAllUsers, removeReel } from "../controllers/admin/admin.controller.js"
 import express from "express";
 import { isAdmin } from "../middleware/admin.middleware.js";
 import { authMiddlewere } from "../middleware/auth.middlewere.js";

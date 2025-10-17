@@ -5,7 +5,7 @@ import { connectDB } from './config/db.js'
 import router from './routes/Auth.routes.js'
 
 import adminRoute from "./routes/admin.routes.js"
-
+import foodRoute from './routes/food.route.js';
 import cors from "cors"
 import { isAdmin } from "./middleware/admin.middleware.js";
 configDotenv();
@@ -25,8 +25,9 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", router);
 app.use("/api/admin", adminRoute);
+app.use("/api/food", foodRoute);
 
 
 
 
-app.listen(3000, () => console.log("server started"))
+app.listen(3000, () => console.log("server started at port 3000✅ "))

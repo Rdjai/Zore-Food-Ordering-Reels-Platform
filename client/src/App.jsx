@@ -5,6 +5,7 @@ import AppLayout from './src/layouts/AppLayout'
 import FoodPage from './src/pages/store/foodpage'
 import LoginPage from './src/pages/auth/login'
 import RegisterPage from './src/pages/auth/register'
+import ReelPage from './src/pages/reels/reel'
 
 const Router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const Router = createBrowserRouter([
       {
         path: "/signup",
         element: <RegisterPage />,
+      },
+      {
+        path: "/reel",
+        element: <ReelPage />,
       },
 
     ]
