@@ -182,5 +182,3 @@ Riders, Admins, and AI-powered features are integrated to give a complete real-w
 | DELETE `/api/admin/coupon/:id` | Remove coupon |  
 
 ---
-
-## **📂 Project Structure**
