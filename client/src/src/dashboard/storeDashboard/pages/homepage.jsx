@@ -1,5 +1,6 @@
-import DashboardCard from '@/src/component/dashboardCard'
-import React from 'react'
+import { useState } from 'react'
+import Chart from 'react-apexcharts'
+
 const products = [
     {
         id: 1,
@@ -28,6 +29,27 @@ const products = [
 
 ]
 const StoreHome = () => {
+    const [chartData] = useState({
+        options: {
+            chart: {
+                id: "1",
+            },
+            xaxis: {
+                categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
+            },
+        },
+        series: [
+            {
+                name: "series-1",
+                data: [30, 40, 35, 50, 49, 60, 70, 91, 125],
+            },
+        ],
+    });
+
+    const series = [44, 55, 41, 17, 15];
+    const options = {
+        labels: ["Pizz", "Burger", "Chhole bhature", "Drinks", "Dessert"],
+    };
     return (
         < div className="p-4 h-screen m-auto" >
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center justify-center">
@@ -46,6 +68,20 @@ const StoreHome = () => {
                         <p className="text-green-500 text-sm">+5% from last month</p>
                     </div>
                 ))}
+            </div>
+            <div className="flex gap-20 justify-evenly items-center mt-5">
+                <Chart
+                    options={chartData.options}
+                    series={chartData.series}
+                    type="bar"
+                    width={500}
+                    height={320}
+                />
+
+                <div className="">
+                    <h3 className='font-bold '>Products Sell</h3>
+                    <Chart options={options} series={series} type="donut" width="380" height={320} />
+                </div>
             </div>
         </div >
 

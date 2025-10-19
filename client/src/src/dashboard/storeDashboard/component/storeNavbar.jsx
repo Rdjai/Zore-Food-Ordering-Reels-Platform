@@ -3,13 +3,15 @@ import logo from '../../../../assets/img/logo.png'
 import { CiGift } from "react-icons/ci";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { CiCirclePlus } from "react-icons/ci";
+import { Link } from 'react-router-dom';
 
 const StoreNavbar = () => {
     return (
         <div className="flex  w-screen h-[8vh] text-center justify-between  mr-8 border-zinc-300 border-b-1">
-            <div className="w-[15vw] items-center  justify-center flex border-zinc-300 border-r-1">
+
+            <Link className="w-[15vw] items-center  justify-center flex border-zinc-300 border-r-1">
                 <img src={logo} alt="logo" className=" font-bold text-white  h-[6vh] items-center m-auto " />
-            </div>
+            </Link>
             <div className="flex justify-between w-[85vw]">
                 <div className="flex h-[6vh] text-center items-center m-auto sm: invisible md:visible">
                     <input type="text" placeholder="Search..." className="border border-gray-300 rounded-l-full px-4 py-2 focus:outline-none" />
