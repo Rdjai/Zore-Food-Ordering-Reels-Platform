@@ -1,7 +1,8 @@
-const Api = "locahost:3000/api/"
+const Api = "http://localhost:3000/api/"
 
-export const foodApi = async () => {
-    const response = await fetch(`${Api}food/get-foods`);
+export const getAppFood = async () => {
+    const response = await fetch(`${Api}food/food`);
     const data = await response.json();
     return data;
 }
+

@@ -1,18 +1,34 @@
 import Food from "../../models/product.model.js";
 import restaurantModel from "../../models/restaurant.model.js";
+import ImageKit from "../../utils/imagekit.js";
 
 export const addFood = async (req, res) => {
-    try {
 
+    try {
         const {
             name,
             description,
-            image,
             price,
             category,
             tags,
             isAvailable,
+
         } = req.body;
+
+        const imageFile = req.files?.image?.[0];
+
+        if (!imageFile) {
+            return res.status(400).json({ message: "Please upload an image or video" });
+        }
+        const imageName = imageFile?.originalname.replace(/\s/g, '_');
+        console.log();
+        const imageUrl = await ImageKit.upload(
+            {
+                file: req.files.image[0].buffer,
+                fileName: imageName
+            }
+        );
+        const image = imageUrl.url;
         const store = restaurantModel.findById(req.user.userId);
         if (!store) {
             return res.status(404).json({ message: "Restaurant not found" });
@@ -30,7 +46,7 @@ export const addFood = async (req, res) => {
         });
 
         const savedFood = await newFood.save();
-        res.status(201).json({ message: "Food item added successfully", food: savedFood });
+        res.status(201).json({ message: "Food item added successfully", savedFood });
     } catch (error) {
         res.status(500).json({ message: "Error adding food item", error: error.message });
     }
@@ -39,7 +55,7 @@ export const addFood = async (req, res) => {
 
 export const getAllFood = async (req, res) => {
     try {
-        const foods = await Food.find().populate("restaurant", "name city");
+        const foods = await Food.find().sort({ createdAt: -1 })
         res.status(200).json(foods);
     } catch (error) {
         res.status(500).json({ message: "Error fetching food items", error: error.message });

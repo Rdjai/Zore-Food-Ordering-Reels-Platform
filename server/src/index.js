@@ -1,5 +1,5 @@
 import express from "express";
-import { configDotenv } from "dotenv";
+import dotenv from "dotenv";
 import { connectDB } from './config/db.js'
 
 import router from './routes/Auth.routes.js'
@@ -8,7 +8,7 @@ import adminRoute from "./routes/admin.routes.js"
 import foodRoute from './routes/food.route.js';
 import cors from "cors"
 import { isAdmin } from "./middleware/admin.middleware.js";
-configDotenv();
+dotenv.config();
 const app = express();
 connectDB();
 
