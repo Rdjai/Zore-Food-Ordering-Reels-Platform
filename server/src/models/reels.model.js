@@ -5,6 +5,10 @@ const reelSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product"
+    },
     caption: { type: String, maxlength: 500 },
     tags: [{ type: String }],
     userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },

@@ -8,6 +8,11 @@ import RegisterPage from './src/pages/auth/register'
 import ReelPage from './src/pages/reels/reel'
 import StoreLayout from './src/dashboard/storeDashboard/layout/storeLayput'
 import StoreHome from './src/dashboard/storeDashboard/pages/homepage'
+import StoreOrders from './src/dashboard/storeDashboard/pages/orders'
+import AddNewItems from './src/dashboard/storeDashboard/pages/additems'
+import ReelUploadPage from './src/dashboard/storeDashboard/pages/reel.upload'
+import StoreProductPage from './src/dashboard/storeDashboard/pages/product.store.dashboard'
+import StoreTranscationPage from './src/dashboard/storeDashboard/pages/store.dashboard.payment'
 
 const Router = createBrowserRouter([
   {
@@ -48,21 +53,26 @@ const Router = createBrowserRouter([
         element: <StoreHome />
       },
       {
-        path: '/orders',
-        element: <div>Store Orders Page</div>
+        path: '/store/dashboard/orders',
+        element: <StoreOrders />
 
       },
       {
-        path: '/products',
-        element: <div>Store Products Page</div>
+        path: '/store/dashboard/addItems',
+        element: <AddNewItems />
+
       },
       {
-        path: '/settings',
-        element: <div>Store Settings Page</div>
+        path: '/store/dashboard/reelupload',
+        element: <ReelUploadPage />
       },
       {
-        path: '/analytics',
-        element: <div>Store Analytics Page</div>
+        path: '/store/dashboard/products',
+        element: <StoreProductPage />
+      },
+      {
+        path: '/store/dashboard/transaction',
+        element: <StoreTranscationPage />
       },
       {
         path: '/customers',

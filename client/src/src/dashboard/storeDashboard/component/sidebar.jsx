@@ -16,19 +16,21 @@ import { BsGraphUpArrow } from "react-icons/bs";
 import { SiInductiveautomation } from "react-icons/si";
 import { SiShortcut } from "react-icons/si";
 import { AiOutlineProduct } from "react-icons/ai";
-
+import { Link } from 'react-router-dom';
+import { GiCook } from "react-icons/gi";
 
 
 const SidebarMenu2 = [
     {
         name: 'General',
         menu: [
-            { name: 'Dashboard', icon: <FaTachometerAlt />, link: '/user/dashboard' },
-            { name: 'Payment', icon: <RiMoneyRupeeCircleLine />, link: '/user/dashboard/orders' },
+            { name: 'Dashboard', icon: <FaTachometerAlt />, link: '/store/dashboard' },
+            { name: 'Orders', icon: <GiCook />, link: 'store/dashboard/orders' },
+            { name: 'Payment', icon: <RiMoneyRupeeCircleLine />, link: 'store/dashboard/orders' },
             { name: 'Users', icon: <FaUserGroup />, link: '/user/dashboard/products' },
             { name: 'message', icon: <LuMessageSquareDot />, link: '/user/dashboard/products' },
-            { name: 'Add Items', icon: <AiOutlineProduct />, link: '/user/dashboard/settings' },
-            { name: 'Publish reel', icon: <SiShortcut />, link: '/user/dashboard/settings' },
+            { name: 'Add Items', icon: <AiOutlineProduct />, link: '/store/dashboard/addItems' },
+            { name: 'Publish reel', icon: <SiShortcut />, link: '/store/dashboard/reelupload' },
         ]
 
 
@@ -36,8 +38,8 @@ const SidebarMenu2 = [
     {
         name: 'Tools',
         menu: [
-            { name: 'Product', icon: <FiShoppingBag />, link: '/user/dashboard/settings/profile' },
-            { name: 'Invoice', icon: <TbFileInvoice />, link: '/user/dashboard/settings/account' },
+            { name: 'Product', icon: <FiShoppingBag />, link: '/store/dashboard/products' },
+            { name: 'Invoice', icon: <TbFileInvoice />, link: '/store/dashboard/transaction' },
             { name: 'Analytics', icon: <BsGraphUpArrow />, link: '/user/dashboard/settings/account' },
             { name: 'Automation', icon: <SiInductiveautomation />, link: '/user/dashboard/settings/account' },
         ]
@@ -64,10 +66,10 @@ const StoreSidebar = () => {
                         <ul>
                             {section.menu.map((item, idx) => (
                                 <li key={idx} className="mb-4">
-                                    <a href={item.link} className="flex items-center text-gray-700 hover:text-red-600">
+                                    <Link to={item.link} className="flex items-center text-gray-700 hover:text-red-600">
                                         <span className="text-lg mr-3">{item.icon}</span>
                                         <span>{item.name}</span>
-                                    </a>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
