@@ -26,8 +26,8 @@ const SidebarMenu2 = [
         menu: [
             { name: 'Dashboard', icon: <FaTachometerAlt />, link: '/store/dashboard' },
             { name: 'Orders', icon: <GiCook />, link: 'store/dashboard/orders' },
-            { name: 'Payment', icon: <RiMoneyRupeeCircleLine />, link: 'store/dashboard/orders' },
-            { name: 'Users', icon: <FaUserGroup />, link: '/user/dashboard/products' },
+            { name: 'Payment', icon: <RiMoneyRupeeCircleLine />, link: 'store/dashboard/payout' },
+            // { name: 'Users', icon: <FaUserGroup />, link: '/user/dashboard/products' },
             { name: 'message', icon: <LuMessageSquareDot />, link: '/user/dashboard/products' },
             { name: 'Add Items', icon: <AiOutlineProduct />, link: '/store/dashboard/addItems' },
             { name: 'Publish reel', icon: <SiShortcut />, link: '/store/dashboard/reelupload' },
