@@ -72,21 +72,20 @@ const SidebarMenu2 = [
     {
         name: "User Management",
         menu: [
-            { name: "All Users", icon: <FaUsers />, link: "/admin/dashboard/users" },
-            { name: "Store Owners", icon: <FaUserTie />, link: "/admin/dashboard/store-owners" },
-            { name: "Banned Accounts", icon: <FaUserShield />, link: "/admin/dashboard/banned" },
-            { name: "User Reports", icon: <TbReportAnalytics />, link: "/admin/dashboard/user-reports" },
+            { name: "Users", icon: <FaUsers />, link: "/admin/dashboard/user-overview" },
+            { name: "content", icon: <SiShortcut />, link: "/admin/dashboard/content-management" },
+
+
         ],
     },
-    {
-        name: "Content Control",
-        menu: [
-            { name: "Reels", icon: <SiShortcut />, link: "/admin/dashboard/reels" },
-            { name: "Reviews", icon: <FaHandsHelping />, link: "/admin/dashboard/reviews" },
-            { name: "Reported Content", icon: <MdOutlineSupportAgent />, link: "/admin/dashboard/reported" },
-            { name: "App Banners / Ads", icon: <FaBell />, link: "/admin/dashboard/banners" },
-        ],
-    },
+    // {
+    //     name: "Content Control",
+    //     menu: [
+    //         { name: "Reviews", icon: <FaHandsHelping />, link: "/admin/dashboard/reviews" },
+    //         { name: "Reported Content", icon: <MdOutlineSupportAgent />, link: "/admin/dashboard/reported" },
+    //         { name: "App Banners / Ads", icon: <FaBell />, link: "/admin/dashboard/banners" },
+    //     ],
+    // },
     {
         name: "Finance & Billing",
         menu: [

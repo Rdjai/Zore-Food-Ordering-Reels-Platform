@@ -24,8 +24,8 @@ const AdminSidebar = () => {
                 </div>
                 <div className="flex items-center mr-8">
                     <div className='row text-start m-0 p-0'>
-                        <div className="mr-4 text-red-600 font-medium">Rdj Store</div>
-                        <div className="mr-4 text-red-600 font-extralight m-0 p-0 items-start">Business</div>
+                        <div className="mr-4 text-red-600 font-medium">Zore Admin</div>
+                        {/* <div className="mr-4 text-red-600 font-extralight m-0 p-0 items-start">Business</div> */}
 
                     </div>
                     <img src="https://media.licdn.com/dms/image/v2/D5603AQHqcxwrHzx_Sw/profile-displayphoto-shrink_400_400/B56ZRVpXhyHoAo-/0/1736603696316?e=1762387200&v=beta&t=6V56jsmXW6ecX8McgIFznvGl5xe9rT_9Q_7bw8E8tU8" alt="Profile" className="w-10 h-10 rounded-full" />

@@ -34,6 +34,8 @@ import RiderShiftSchedulesPage from './src/dashboard/adminDashboard/adminpages/r
 import RiderPerformanceReportsPage from './src/dashboard/adminDashboard/adminpages/riderpages/RiderPerformanceReportsPage'
 import RiderSuspendPage from './src/dashboard/adminDashboard/adminpages/riderpages/RiderSuspendPage'
 import RiderManagementPage from './src/dashboard/adminDashboard/adminpages/riderpages/RiderManagementPage'
+import UserManagementPage from './src/dashboard/adminDashboard/pages/UserManagementPage'
+import ContentManagement from './src/dashboard/adminDashboard/pages/ContentManagement'
 
 const Router = createBrowserRouter([
   {
@@ -200,6 +202,14 @@ const Router = createBrowserRouter([
       {
         path: "/admin/dashboard/rider-overview",
         element: <RiderManagementPage />
+      },
+      {
+        path: "/admin/dashboard/user-overview",
+        element: <UserManagementPage />
+      },
+      {
+        path: "/admin/dashboard/content-management",
+        element: <ContentManagement />
       },
 
 
