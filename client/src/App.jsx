@@ -1,4 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserProfile } from './src/redux/features/auth/authslice';
 import './App.css'
 import HomePage from './src/pages/home/homepage'
 import AppLayout from './src/layouts/AppLayout'
@@ -220,6 +223,13 @@ const Router = createBrowserRouter([
 ])
 
 function App() {
+  const dispatch = useDispatch();
+  const { token } = useSelector((state) => state.auth);
+
+  console.log("app level token", useSelector((state) => state.auth));
+  useEffect(() => {
+
+  })
   return <RouterProvider router={Router} />
 }
 

@@ -8,7 +8,7 @@ import { UserAuthRegistrtion, UserLogin, myProfile } from "../controllers/auth/a
 const router = express.Router();
 router.post("/register", UserAuthRegistrtion);
 router.post("/login", UserLogin);
-router.get("/me", authMiddlewere, myProfile);
+router.get("/profile", authMiddlewere, myProfile);
 
 
 export default router;
