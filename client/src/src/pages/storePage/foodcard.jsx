@@ -1,8 +1,17 @@
 import { Button } from '@/components/ui/button'
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 const FoodCard = ({ key, data }) => {
-    // console.log("food card data", data);
+    const dispact = useDispatch();
+    const handleAddToCart = (data) => {
+        dispact({
+            type: 'cart/addToCart',
+            payload: data,
+        });
+    }
+
+
     return (
         <div
             className="p-4 bg-white shadow-card rounded-xl border hover:shadow-md transition"
@@ -28,7 +37,9 @@ const FoodCard = ({ key, data }) => {
                 </p>
 
 
-                <Button className="w-full bg-red-600 hover:bg-red-700 text-white rounded-lg">
+                <Button className="w-full bg-red-600 hover:bg-red-700 text-white rounded-lg"
+                    onClick={() => handleAddToCart(data)}
+                >
                     Add to cart
                 </Button>
             </div>

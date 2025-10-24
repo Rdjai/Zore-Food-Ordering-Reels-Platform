@@ -3,11 +3,12 @@ import { Slider } from "@/components/ui/slider";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 
-export default function Sidebar({ category, handleCategoryChange }) {
+export default function Sidebar({ category, selectCategory }) {
     const categories = category || [];
 
-    const selectCategory = (catName) => {
-        handleCategoryChange(catName);
+    console.log("Sidebar categories:", category);
+    const handleSelectCategory = (catName) => {
+        selectCategory(catName);
     };
 
     return (
@@ -23,11 +24,11 @@ export default function Sidebar({ category, handleCategoryChange }) {
                         categories.map((item) => (
                             <li key={item._id} className="flex items-center space-x-2">
                                 <Checkbox
-                                    id={item.name}
-                                    onCheckedChange={() => selectCategory(item.name)}
+                                    id={item}
+                                    onCheckedChange={() => handleSelectCategory(item)}
                                 />
-                                <label htmlFor={item.name} className="text-sm cursor-pointer">
-                                    {item.name}
+                                <label htmlFor={item} className="text-sm cursor-pointer">
+                                    {item}
                                 </label>
                             </li>
                         ))

@@ -3,22 +3,27 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
 import { logout } from "../redux/features/auth/authslice";
 import { useDispatch, useSelector } from "react-redux";
+import { ShoppingCart } from "lucide-react"; // npm install lucide-react
 
 const Navbar = () => {
     const dispatch = useDispatch();
     const { user } = useSelector((state) => state.auth);
+    const { cartItems } = useSelector((state) => state.cart); // 👈 cart data
 
     const handleLogout = () => {
         dispatch(logout());
     };
+    console.log("cart items in navbar:", cartItems);
 
     return (
         <nav className="bg-white shadow-md">
             <div className="max-w-screen-xl mx-auto px-4 py-3 flex items-center justify-between">
+                {/* Logo */}
                 <Link to="/" className="flex items-center space-x-2">
                     <img src={logo} alt="Logo" className="w-[110px]" />
                 </Link>
 
+                {/* Search */}
                 <div className="hidden md:flex flex-1 mx-6">
                     <input
                         type="text"
@@ -27,6 +32,7 @@ const Navbar = () => {
                     />
                 </div>
 
+                {/* Nav Links + Cart + Auth */}
                 <div className="flex items-center space-x-6">
                     <Link to="/" className="colors-primary hover:text-red-600 font-medium transition">
                         Home
@@ -40,6 +46,7 @@ const Navbar = () => {
                     <Link to="#" className="colors-primary hover:text-red-600 font-medium transition">
                         Contact
                     </Link>
+
 
                     {!user ? (
                         <>
@@ -61,24 +68,24 @@ const Navbar = () => {
                     ) : (
                         <>
                             <Link to="/profile" className="flex items-center space-x-2 group">
-                                {/* <img
-                                    src={user.image || "https://cdn-icons-png.flaticon.com/512/847/847969.png"}
-                                    alt="User"
-                                    className="w-8 h-8 rounded-full border border-gray-300 group-hover:scale-105 transition-transform"
-                                /> */}
                                 <span className="font-medium text-gray-700 group-hover:text-red-600 transition">
                                     {user.name || "Profile"}
                                 </span>
                             </Link>
 
-                            <button
-                                onClick={handleLogout}
-                                className="text-red-600 border border-red-600 px-3 py-1 rounded-lg hover:bg-red-600 hover:text-white transition"
-                            >
-                                Logout
-                            </button>
+
                         </>
                     )}
+                    <Link to="/cart" className="relative">
+                        <ShoppingCart size={24} className="text-red-600 hover:scale-110 transition-transform hover:text-black" />
+                        {cartItems.length > 0 && (
+                            <span
+                                className="absolute -top-2 -right-2 bg-red-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full shadow-md"
+                            >
+                                {cartItems.length}
+                            </span>
+                        )}
+                    </Link>
                 </div>
             </div>
         </nav>

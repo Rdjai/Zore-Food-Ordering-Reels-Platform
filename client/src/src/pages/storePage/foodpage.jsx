@@ -13,6 +13,7 @@ const FoodPage = () => {
     const handleCategoryChange = (newCategory) => {
         setCategory(newCategory);
     }
+    console.log("Selected category in FoodPage:", category);
 
     useEffect(() => {
         dispatch(fetchFoodItems());
@@ -36,7 +37,10 @@ const FoodPage = () => {
 
     return (
         <div className="flex h-screen overflow-hidden ">
-            <Sidebar category={foodItems} selectCategory={handleCategoryChange} />
+            <Sidebar
+                category={[...new Set(foodItems.map((item) => item.category))]}
+                selectCategory={handleCategoryChange}
+            />
             <main className="flex-1 p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-scroll ">
                 {filterdFoodItems.map((food) => (
                     <FoodCard key={food._id} data={food} />

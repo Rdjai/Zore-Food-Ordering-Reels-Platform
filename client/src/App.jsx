@@ -5,7 +5,7 @@ import { fetchUserProfile } from './src/redux/features/auth/authslice';
 import './App.css'
 import HomePage from './src/pages/home/homepage'
 import AppLayout from './src/layouts/AppLayout'
-import FoodPage from './src/pages/store/foodpage'
+import FoodPage from './src/pages/storePage/foodpage'
 import LoginPage from './src/pages/auth/login'
 import RegisterPage from './src/pages/auth/register'
 import ReelPage from './src/pages/reels/reel'
@@ -39,6 +39,7 @@ import RiderSuspendPage from './src/dashboard/adminDashboard/adminpages/riderpag
 import RiderManagementPage from './src/dashboard/adminDashboard/adminpages/riderpages/RiderManagementPage'
 import UserManagementPage from './src/dashboard/adminDashboard/pages/UserManagementPage'
 import ContentManagement from './src/dashboard/adminDashboard/pages/ContentManagement'
+import CartPage from './src/pages/storePage/CartPage';
 
 const Router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ const Router = createBrowserRouter([
       {
         path: "/reel",
         element: <ReelPage />,
+      },
+      {
+        path: "/cart",
+        element: <CartPage />,
       },
 
 
@@ -112,6 +117,7 @@ const Router = createBrowserRouter([
         path: '/reels',
         element: <div>Store Reels Page</div>
       }
+
 
     ]
   },
