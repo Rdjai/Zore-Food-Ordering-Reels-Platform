@@ -12,8 +12,7 @@ router.post('/addFood', authMiddlewere, verifyRestaurant, upload.fields([
 ]), addFood);
 router.get('/food', getAllFood);
 router.delete('/deletefood/:id', authMiddlewere, verifyRestaurant, deleteFood);
-router.get('/deletefood/:id', getFoodById);
-router.get('/deletefood/:id', getFoodsByRestaurant);
-router.get('/deletefood/:id', getFoodsByRestaurant);
-router.put('/deletefood/:id', updateFoodById);
+router.get('/getfood/:id', getFoodById);
+router.get('/getFoodByrestaurentfood/:id', getFoodsByRestaurant);
+router.put('/updatefood/:id', updateFoodById);
 export default router;

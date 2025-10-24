@@ -2,36 +2,56 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchUserProfileApi, loginApi, registerApi } from "./authApi.js";
 
 
+
 export const loginUser = createAsyncThunk("auth/loginUser", async (userData, thunkAPI) => {
     try {
-        const userLogin = await loginApi(userData);
+        const response = await loginApi(userData);
+        // console.log("response from login api", response);
+        if (response?.error) {
+            return thunkAPI.rejectWithValue(response.error);
+        }
 
-        return userLogin;
+        if (response?.token) {
+            localStorage.setItem("userToken", response.token);
+            localStorage.setItem("user", JSON.stringify(response.user));
+        }
 
-    } catch (error) {
-        return thunkAPI.rejectWithValue(err.message);
+        return response;
+    } catch (err) {
+        return thunkAPI.rejectWithValue(err?.response?.data?.message || err.message || "Login failed");
     }
 });
 
 export const userRegister = createAsyncThunk("auth/userRegister", async (userData, thunkAPI) => {
     try {
-        const userRegister = await registerApi(userData);
-        console.log(userRegister);
-        return userRegister;
-    } catch (error) {
-        return thunkAPI.rejectWithValue(err.message);
-    }
-})
+        const response = await registerApi(userData);
 
-export const fetchUserProfile = createAsyncThunk("auth/fetchUserProfile", async (token, thunAPI) => {
+        if (response?.token) {
+            localStorage.setItem("userToken", response.token);
+            localStorage.setItem("user", JSON.stringify(response.user));
+        }
+
+        return response;
+    } catch (err) {
+        return thunkAPI.rejectWithValue(err?.response?.data?.message || err.message || "Registration failed");
+    }
+});
+
+export const fetchUserProfile = createAsyncThunk("auth/fetchUserProfile", async (token, thunkAPI) => {
     try {
-        const userdata = await fetchUserProfileApi(token)
-        return userdata;
+        const response = await fetchUserProfileApi(token);
 
-    } catch (error) {
-        return thunAPI.rejectWithValue(err.message)
+        if (response?.user) {
+            localStorage.setItem("user", JSON.stringify(response.user));
+        }
+
+        return response;
+    } catch (err) {
+        return thunkAPI.rejectWithValue(err?.response?.data?.message || err.message || "Failed to fetch profile");
     }
-})
+});
+
+
 const token = localStorage.getItem("userToken");
 
 const initialState = {
@@ -42,6 +62,8 @@ const initialState = {
     success: false,
 };
 
+
+
 const authSlice = createSlice({
     name: "auth",
     initialState,
@@ -49,24 +71,30 @@ const authSlice = createSlice({
         logout: (state) => {
             state.user = null;
             state.token = null;
+            state.success = false;
+            state.error = null;
             localStorage.removeItem("userToken");
             localStorage.removeItem("user");
-        }
+        },
+        clearError: (state) => {
+            state.error = null;
+        },
+        clearSuccess: (state) => {
+            state.success = false;
+        },
     },
     extraReducers: (builder) => {
         builder
+
             .addCase(loginUser.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
             .addCase(loginUser.fulfilled, (state, action) => {
                 state.loading = false;
-                state.userInfo = action.payload.user;
+                state.user = action.payload.user;
                 state.token = action.payload.token;
                 state.success = true;
-                localStorage.setItem("userToken", action.payload.token)
-                localStorage.setItem("user", JSON.stringify(action.payload.user));
-
             })
             .addCase(loginUser.rejected, (state, action) => {
                 state.loading = false;
@@ -79,33 +107,31 @@ const authSlice = createSlice({
             })
             .addCase(userRegister.fulfilled, (state, action) => {
                 state.loading = false;
-                state.userInfo = action.payload.user;
-                state.token = action.payload.token
-                state.success = true
-                localStorage.setItem("userToken", action.payload.token)
-                localStorage.setItem("user", JSON.stringify(action.payload.user));
+                state.user = action.payload.user;
+                state.token = action.payload.token;
+                state.success = true;
             })
             .addCase(userRegister.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
             })
+
             .addCase(fetchUserProfile.pending, (state) => {
                 state.loading = true;
-                state.error = null
+                state.error = null;
             })
             .addCase(fetchUserProfile.fulfilled, (state, action) => {
                 state.loading = false;
-                state.userInfo = action.payload.user;
+                state.user = action.payload.user;
                 state.success = true;
-                localStorage.setItem("user", JSON.stringify(action.payload.user));
-
             })
             .addCase(fetchUserProfile.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
-            })
-    }
-})
+            });
+    },
+});
 
-export const { logout } = authSlice.actions;
-export default authSlice.reducer
+
+export const { logout, clearError, clearSuccess } = authSlice.actions;
+export default authSlice.reducer;

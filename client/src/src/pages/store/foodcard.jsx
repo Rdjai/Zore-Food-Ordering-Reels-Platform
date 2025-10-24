@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button'
 import React from 'react'
 
 const FoodCard = ({ key, data }) => {
-    console.log("food card data", data);
+    // console.log("food card data", data);
     return (
         <div
             className="p-4 bg-white shadow-card rounded-xl border hover:shadow-md transition"
@@ -29,7 +29,7 @@ const FoodCard = ({ key, data }) => {
 
 
                 <Button className="w-full bg-red-600 hover:bg-red-700 text-white rounded-lg">
-                    order
+                    Add to cart
                 </Button>
             </div>
         </div>

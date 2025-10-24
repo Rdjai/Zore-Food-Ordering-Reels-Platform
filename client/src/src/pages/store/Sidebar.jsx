@@ -1,11 +1,17 @@
-import React from "react"
-import { Slider } from "@/components/ui/slider"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Button } from "@/components/ui/button"
+import React from "react";
+import { Slider } from "@/components/ui/slider";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "@/components/ui/button";
 
-export default function Sidebar() {
+export default function Sidebar({ category, handleCategoryChange }) {
+    const categories = category || [];
+
+    const selectCategory = (catName) => {
+        handleCategoryChange(catName);
+    };
+
     return (
-        <aside className="my-6 w-64 h-screen bg-white border-r border-gray-200 p-5 shadow-sm hidden sm:block ">
+        <aside className="my-6 w-64 h-screen bg-white border-r border-gray-200 p-5 shadow-sm hidden sm:block overflow-y-auto">
             <h2 className="text-xl font-heading mb-6 text-red-600 font-extrabold">
                 #Filters
             </h2>
@@ -13,14 +19,21 @@ export default function Sidebar() {
             <div className="mb-6">
                 <h3 className="font-medium mb-3 text-neutral-dark">Categories</h3>
                 <ul className="space-y-2">
-                    {["Pizza", "Burger", "Biryani", "Chinese", "Desserts"].map((item) => (
-                        <li key={item} className="flex items-center space-x-2">
-                            <Checkbox id={item} />
-                            <label htmlFor={item} className="text-sm cursor-pointer">
-                                {item}
-                            </label>
-                        </li>
-                    ))}
+                    {categories.length > 0 ? (
+                        categories.map((item) => (
+                            <li key={item._id} className="flex items-center space-x-2">
+                                <Checkbox
+                                    id={item.name}
+                                    onCheckedChange={() => selectCategory(item.name)}
+                                />
+                                <label htmlFor={item.name} className="text-sm cursor-pointer">
+                                    {item.name}
+                                </label>
+                            </li>
+                        ))
+                    ) : (
+                        <p className="text-gray-400 text-sm">No categories found</p>
+                    )}
                 </ul>
             </div>
 
@@ -49,18 +62,22 @@ export default function Sidebar() {
                 <ul className="space-y-2">
                     <li className="flex items-center space-x-2">
                         <Checkbox id="veg" />
-                        <label htmlFor="veg" className="text-sm cursor-pointer">Veg</label>
+                        <label htmlFor="veg" className="text-sm cursor-pointer">
+                            Veg
+                        </label>
                     </li>
                     <li className="flex items-center space-x-2">
                         <Checkbox id="nonveg" />
-                        <label htmlFor="nonveg" className="text-sm cursor-pointer">Non-Veg</label>
+                        <label htmlFor="nonveg" className="text-sm cursor-pointer">
+                            Non-Veg
+                        </label>
                     </li>
                 </ul>
             </div>
 
-            <Button className="w-full bg-primary hover:bg-primary-dark text-white rounded-lg">
+            <Button className="w-full bg-red-600 hover:bg-red-700 text-white rounded-lg">
                 Apply Filters
             </Button>
         </aside>
-    )
+    );
 }
