@@ -1,13 +1,14 @@
 import userModel from "../../models/user.model.js"
 import bcryptjs from 'bcryptjs'
 import { generateToken } from "../../services/jwt.js";
+import Address from "../../models/Address.model.js";
 export const UserAuthRegistrtion = async (req, res) => {
     try {
         const { name, email, password } = req.body;
         if (!name || !email || !password) return res.status(400).json({
             error: "Missing credentials"
         })
-
+        const userAddress = await Address.findOne({ userId: req.user.id });
         const checkExistingUser = await userModel.findOne({ email });
         if (checkExistingUser) return res.status(400).json({ error: "Email already registered" });
         const hashPass = await bcryptjs.hash(password, 5);
@@ -32,6 +33,7 @@ export const UserAuthRegistrtion = async (req, res) => {
                 name: user.name,
                 email: user.email,
                 role: user.role,
+                address: userAddress || null,
             },
         });
 
@@ -48,6 +50,7 @@ export const UserLogin = async (req, res) => {
             return res.status(400).json({ error: "Missing credentials" });
         }
 
+
         const user = await userModel.findOne({ email });
         if (!user) return res.status(400).json({
             error: "User not found"
@@ -59,9 +62,12 @@ export const UserLogin = async (req, res) => {
             email: user.email,
             userId: user._id,
             role: user.role
+
         }
         const token = generateToken(payload)
-
+        const userid = user._id;
+        const userAddress = await Address.findOne({ user: userid });
+        console.log(userAddress);
         res.status(200).json({
             success: true,
             message: "Login successful",
@@ -71,6 +77,7 @@ export const UserLogin = async (req, res) => {
                 name: user.name,
                 email: user.email,
                 role: user.role,
+                address: userAddress || null,
             },
         });
     } catch (error) {
@@ -82,11 +89,14 @@ export const UserLogin = async (req, res) => {
 
 export const myProfile = async (req, res) => {
     try {
+        const address = await Address.findOne({ userId: req.user.id });
         const user = await userModel.findById(req.user.id).select("-password");
         if (!user) return res.status(404).json({ error: "User not found" });
+        console.log(user, address);
         res.status(200).json({
             success: true,
             user,
+            address: address || null,
         });
     } catch (error) {
         console.error("GetMe error:", error);

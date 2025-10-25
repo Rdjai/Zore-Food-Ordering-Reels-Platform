@@ -1,10 +1,10 @@
 import Razorpay from "razorpay";
 import crypto from "crypto";
+import Order from '../../models/Order.model.js';
 
 export const createOrder = async (req, res) => {
     try {
         const { amount } = req.body;
-
         if (!amount) {
             return res.status(400).json({ success: false, message: "Amount is required" });
         }
@@ -32,6 +32,7 @@ export const createOrder = async (req, res) => {
             amount: order.amount,
             currency: order.currency,
             key: process.env.RAZORPAY_KEY_ID,
+            order,
         });
     } catch (error) {
         console.error("Error creating order:", error);
@@ -41,12 +42,15 @@ export const createOrder = async (req, res) => {
 
 export const verifyPayment = async (req, res) => {
     try {
-        const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
+        const { response, orderData } = req.body;
+        const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = response;
+        const { items, address, amount } = orderData;
 
         if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature) {
             return res.status(400).json({ success: false, message: "Missing payment fields" });
         }
 
+        // 1️⃣ Verify signature
         const body = `${razorpay_order_id}|${razorpay_payment_id}`;
         const expectedSignature = crypto
             .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
@@ -55,11 +59,33 @@ export const verifyPayment = async (req, res) => {
 
         const isAuthentic = expectedSignature === razorpay_signature;
 
-        if (isAuthentic) {
-            res.status(200).json({ success: true, message: "Payment verified successfully" });
-        } else {
-            res.status(400).json({ success: false, message: "Invalid Signature" });
+        if (!isAuthentic) {
+            return res.status(400).json({ success: false, message: "Invalid Signature" });
         }
+
+        const newOrder = new Order({
+            user: req.user.userId,
+            items: items.map(item => ({
+                food: item.itemsIds,
+                quantity: item.quantity,
+            })),
+            amount,
+            address,
+            paymentId: razorpay_payment_id,
+            orderId: razorpay_order_id,
+            paymentStatus: "Paid",
+        });
+
+        await newOrder.save();
+
+
+        const savedOrder = await newOrder.save();
+
+        res.status(200).json({
+            success: true,
+            message: "Payment verified & order saved successfully",
+            order: savedOrder,
+        });
     } catch (error) {
         console.error("Error verifying payment:", error);
         res.status(500).json({ success: false, message: "Server Error", error });
