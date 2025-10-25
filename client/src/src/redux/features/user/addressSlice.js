@@ -54,10 +54,10 @@ export const updateUserAddress = createAsyncThunk(
     }
 );
 
-const uAdd = JSON.parse(localStorage.getItem("user"));
+const uAdd = JSON.parse(localStorage.getItem("user")) || {};
 
 const initialState = {
-    address: uAdd.address || null,
+    address: uAdd?.address || null,
     loading: false,
     error: null,
 };

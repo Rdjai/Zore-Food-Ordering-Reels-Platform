@@ -16,11 +16,6 @@ logs
 *.log
 npm-debug.log*
 
-# Build folders
-dist/
-build/
-tmp/
-temp/
 
 # React / React Native
 .cache/
@@ -37,6 +32,13 @@ android/.idea/
 
 # MacOS
 .DS_Store
+
+# Build folders
+dist/
+build/
+tmp/
+temp/
+
 
 # MongoDB dump files
 dump/

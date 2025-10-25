@@ -10,8 +10,8 @@ const FoodCard = ({ key, data }) => {
             payload: data,
         });
     }
-
-
+    const { cartItems } = useSelector((state) => state.cart);
+    const isInCart = cartItems.some((items) => items._id === data._id);
     return (
         <div
             className="p-4 bg-white shadow-card rounded-xl border hover:shadow-md transition"
@@ -37,10 +37,15 @@ const FoodCard = ({ key, data }) => {
                 </p>
 
 
-                <Button className="w-full bg-red-600 hover:bg-red-700 text-white rounded-lg"
+                <Button className={`w-full rounded-lg text-white transition ${isInCart
+                        ? "bg-green-600 hover:bg-green-700"
+                        : "bg-red-600 hover:bg-red-700"
+                    }`}
                     onClick={() => handleAddToCart(data)}
                 >
-                    Add to cart
+
+                    {isInCart ? "Added" : "Add to Cart"}
+
                 </Button>
             </div>
         </div>
