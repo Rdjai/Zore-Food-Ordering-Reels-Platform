@@ -172,6 +172,6 @@ Favorites, Reviews, Coupons
 
 Feed & Explore filters
 
-AI endpoints
-
 Extended Admin analytics & announcements
+
+live tracking 
